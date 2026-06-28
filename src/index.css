@@ -862,3 +862,290 @@ html, body {
         margin: 0 auto;
     }
 }
+
+/* Ecosystem Showcase Section Styling */
+.ecosystem-section {
+    position: relative;
+    width: 100%;
+    padding: 140px 0;
+    background-color: #030303;
+    border-bottom: 1px solid var(--border-premium);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.ecosystem-bg-mesh {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 60%, rgba(79, 70, 229, 0.05) 0%, rgba(6, 182, 212, 0.03) 40%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.eco-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+    position: relative;
+    z-index: 5;
+}
+
+.eco-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-premium);
+    border-radius: 100px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+}
+
+.eco-badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent-purple);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-accent-purple);
+}
+
+.eco-badge-text {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a1a1aa;
+}
+
+.eco-header {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4.2vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+}
+
+.ecosystem-grid-container {
+    position: relative;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    z-index: 5;
+}
+
+.network-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pulsing-line {
+    stroke-dashoffset: 0;
+    animation: dash 35s linear infinite;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: -1000;
+    }
+}
+
+.ecosystem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 50px;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+}
+
+/* Card Positioning for Desktop */
+.card-education { grid-column: 1; grid-row: 1; }
+.card-health { grid-column: 3; grid-row: 1; }
+.card-labs { grid-column: 2; grid-row: 2; }
+.card-ai { grid-column: 1; grid-row: 2; }
+.card-cloud { grid-column: 3; grid-row: 2; }
+.card-digital { grid-column: 2; grid-row: 3; }
+
+/* General Eco Card Glassmorphism */
+.eco-card {
+    background: rgba(10, 10, 12, 0.4);
+    border: 1px solid var(--border-premium);
+    border-radius: 24px;
+    padding: 36px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.card-glass-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% -20%, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.card-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+    transition: all 0.4s ease;
+}
+
+.card-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-top: 6px;
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+}
+
+.card-desc {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Labs Hub Card - Highlighted Center Node */
+.hub-card {
+    background: rgba(15, 15, 18, 0.6);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hub-card .card-glass-glow {
+    background: radial-gradient(circle at 50% -20%, rgba(0, 210, 255, 0.08) 0%, transparent 65%);
+}
+
+.hub-card .card-icon-wrapper {
+    background: rgba(0, 210, 255, 0.04);
+    border-color: rgba(0, 210, 255, 0.15);
+    color: var(--color-accent-blue);
+    box-shadow: 0 0 15px rgba(0, 210, 255, 0.1);
+}
+
+/* Card Hover Interactions */
+.eco-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 255, 255, 0.02);
+}
+
+.eco-card:hover .card-icon-wrapper {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+/* Individual card hover glow highlights */
+.card-education:hover {
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.06);
+}
+.card-education:hover .card-icon-wrapper { color: #818cf8; border-color: rgba(99, 102, 241, 0.3); }
+
+.card-health:hover {
+    border-color: rgba(236, 72, 153, 0.25);
+    box-shadow: 0 15px 40px rgba(236, 72, 153, 0.06);
+}
+.card-health:hover .card-icon-wrapper { color: #f472b6; border-color: rgba(236, 72, 153, 0.3); }
+
+.card-labs:hover {
+    border-color: rgba(0, 210, 255, 0.3);
+    box-shadow: 0 15px 45px rgba(0, 210, 255, 0.12);
+}
+.card-labs:hover .card-icon-wrapper { color: #00d2ff; border-color: rgba(0, 210, 255, 0.4); }
+
+.card-ai:hover {
+    border-color: rgba(167, 139, 250, 0.25);
+    box-shadow: 0 15px 40px rgba(167, 139, 250, 0.06);
+}
+.card-ai:hover .card-icon-wrapper { color: #c084fc; border-color: rgba(167, 139, 250, 0.3); }
+
+.card-cloud:hover {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 15px 40px rgba(56, 189, 248, 0.06);
+}
+.card-cloud:hover .card-icon-wrapper { color: #38bdf8; border-color: rgba(56, 189, 248, 0.3); }
+
+.card-digital:hover {
+    border-color: rgba(45, 212, 191, 0.25);
+    box-shadow: 0 15px 40px rgba(45, 212, 191, 0.06);
+}
+.card-digital:hover .card-icon-wrapper { color: #2dd4bf; border-color: rgba(45, 212, 191, 0.3); }
+
+/* Responsive grid layouts for Tablet & Mobile */
+@media (max-width: 1024px) {
+    .ecosystem-section {
+        padding: 100px 0;
+    }
+
+    .network-svg {
+        display: none; /* Hide SVG lines on tablet/mobile as cards rearrange into generic grids */
+    }
+
+    .ecosystem-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        gap: 30px;
+    }
+
+    /* Reset grid positions */
+    .card-education, .card-health, .card-labs, .card-ai, .card-cloud, .card-digital {
+        grid-column: auto !important;
+        grid-row: auto !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .eco-header-container {
+        padding: 0 24px;
+        margin-bottom: 50px;
+    }
+
+    .eco-card {
+        padding: 28px;
+    }
+}
