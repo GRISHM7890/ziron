@@ -3130,3 +3130,149 @@ html, body {
         font-size: 1.4rem;
     }
 }
+
+/* India Map & HUD Layout styling */
+.map-and-hud-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    margin-top: 30px;
+    width: 100%;
+}
+
+.map-wrapper {
+    flex: 1.1;
+    max-width: 320px;
+    position: relative;
+}
+
+.map-hud-panel {
+    flex: 0.9;
+    position: relative;
+    border-radius: 16px;
+    border: 1px solid var(--border-premium);
+    overflow: hidden;
+    background: rgba(10, 10, 12, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+}
+
+.hud-blur {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    z-index: 1;
+}
+
+.hud-content {
+    position: relative;
+    padding: 24px;
+    width: 100%;
+    z-index: 2;
+}
+
+.hud-top-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.hud-city-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+}
+
+.hud-status-badge {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hud-status-badge.active {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+.hud-status-badge.idle {
+    color: #e4e4e7;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hud-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 16px;
+}
+
+.hud-meta-lbl {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.hud-meta-val {
+    font-family: var(--font-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.hud-meta-val.load-pct {
+    font-family: var(--font-mono);
+    color: var(--color-accent-blue);
+    font-weight: 700;
+}
+
+.hud-city-details {
+    font-size: 0.85rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+}
+
+.map-city-group:hover circle:first-child {
+    fill: #ffffff !important;
+    opacity: 0.9 !important;
+}
+
+/* Tablet & Mobile tweaks for Map HUD */
+@media (max-width: 1024px) {
+    .map-and-hud-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 24px;
+        width: 100%;
+        max-width: 440px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .map-wrapper {
+        max-width: 280px;
+    }
+
+    .map-hud-panel {
+        align-self: auto;
+        width: 100%;
+    }
+}

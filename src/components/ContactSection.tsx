@@ -4,11 +4,50 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+interface CityNode {
+    id: string;
+    name: string;
+    cx: number;
+    cy: number;
+    color: string;
+}
+
+const citiesList: CityNode[] = [
+    { id: "Srinagar", name: "Srinagar Core", cx: 97, cy: 25, color: "#00d2ff" },
+    { id: "Delhi", name: "Delhi Sovereign Core", cx: 98, cy: 55, color: "#00d2ff" },
+    { id: "Jaipur", name: "Jaipur Node", cx: 82, cy: 75, color: "#a78bfa" },
+    { id: "Ahmedabad", name: "Ahmedabad Node", cx: 68, cy: 105, color: "#a78bfa" },
+    { id: "Mumbai", name: "Mumbai Telemetry Hub", cx: 72, cy: 130, color: "#00d2ff" },
+    { id: "Pune", name: "Pune Facility", cx: 76, cy: 135, color: "#2dd4bf" },
+    { id: "Bangalore", name: "Bangalore Train Core", cx: 90, cy: 160, color: "#7928ca" },
+    { id: "Hyderabad", name: "Hyderabad DB Node", cx: 100, cy: 140, color: "#00d2ff" },
+    { id: "Chennai", name: "Chennai Route Node", cx: 108, cy: 165, color: "#2dd4bf" },
+    { id: "Kolkata", name: "Kolkata Backup Core", cx: 140, cy: 105, color: "#7928ca" },
+    { id: "Guwahati", name: "Guwahati Sync Node", cx: 172, cy: 90, color: "#a78bfa" },
+    { id: "Trivandrum", name: "Trivandrum Oceanic", cx: 92, cy: 195, color: "#00d2ff" }
+];
+
+const citiesData: Record<string, { load: string; status: string; type: string; details: string }> = {
+    "Srinagar": { load: "18.3%", status: "Active", type: "Remote Edge Cache", details: "Low-latency regional edge synchronization grids serving Northern sectors." },
+    "Delhi": { load: "92.4%", status: "Active", type: "Primary Sovereign Core", details: "Houses Ziron's foundational cognitive models and government governance training nodes." },
+    "Jaipur": { load: "44.1%", status: "Active", type: "Edge Synapse Node", details: "Processes telemetry traffic routing between Northern and Western grids." },
+    "Ahmedabad": { load: "56.2%", status: "Active", type: "Industrial Automation Core", details: "Orchestrates machine learning schedules for manufacturing and automation sectors." },
+    "Mumbai": { load: "79.8%", status: "Active", type: "Financial Telemetry Hub", details: "Secures high-frequency data pipelines for commerce, banking, and trading instances." },
+    "Pune": { load: "61.5%", status: "Active", type: "R&D Simulation Cluster", details: "Runs sandboxed traffic loops to stress-test model scaling under high workloads." },
+    "Bangalore": { load: "87.1%", status: "Active", type: "Cognitive Training Cluster", details: "Primary hardware arrays dedicated to training bespoke transformer parameters." },
+    "Hyderabad": { load: "64.2%", status: "Active", type: "Zero-Trust Database Core", details: "Manages hyper-elastic secure data storage systems and transaction hashes." },
+    "Chennai": { load: "58.7%", status: "Active", type: "Sovereign Web Router", details: "Serves Web client rendering SSR tasks and orchestrates serverless sync packets." },
+    "Kolkata": { load: "42.5%", status: "Idle", type: "Backup Telemetry Node", details: "Standby database replication grid handling Eastern territory failovers." },
+    "Guwahati": { load: "31.9%", status: "Active", type: "Edge Sync Facility", details: "Synchronizes localized databases over narrow-bandwidth networks and satellite links." },
+    "Trivandrum": { load: "51.2%", status: "Active", type: "Oceanic Fiber Bridge", details: "Links physical subsea fiber networks to the core routing fabric." }
+};
+
 export const ContactSection = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const buttonRef = useRef<HTMLButtonElement>(null);
     const [formState, setFormState] = useState({ name: '', email: '', company: '', message: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
     useEffect(() => {
         const container = containerRef.current;
@@ -16,7 +55,7 @@ export const ContactSection = () => {
 
         // 1. Background Brightness Shift on scroll
         gsap.to(container, {
-            backgroundColor: '#0a0b16', // Shift from deep #030303 to a glowing navy-indigo slate
+            backgroundColor: '#0a0b16',
             scrollTrigger: {
                 trigger: container,
                 start: 'top 80%',
@@ -38,7 +77,7 @@ export const ContactSection = () => {
             }
         );
 
-        // 3. Staggered reveal for form elements
+        // 3. Staggered reveal for layouts
         gsap.fromTo('.contact-left-anim',
             { x: -50, opacity: 0 },
             {
@@ -73,11 +112,9 @@ export const ContactSection = () => {
         const btn = buttonRef.current;
         if (!btn) return;
         const rect = btn.getBoundingClientRect();
-        // Calculate relative coordinates from center
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
         
-        // Translate button toward the mouse (35% of the distance)
         gsap.to(btn, {
             x: x * 0.35,
             y: y * 0.35,
@@ -89,7 +126,6 @@ export const ContactSection = () => {
     const handleMouseLeave = () => {
         const btn = buttonRef.current;
         if (!btn) return;
-        // Snap back with elastic bounce
         gsap.to(btn, {
             x: 0,
             y: 0,
@@ -101,20 +137,21 @@ export const ContactSection = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!formState.name || !formState.email || !formState.message) return;
-        
-        // Trigger success animation state
         setIsSubmitted(true);
     };
 
+    // HUD Active Node Calculation
+    const activeCityId = hoveredCity || "Delhi";
+    const activeCityData = citiesData[activeCityId];
+
     return (
         <section ref={containerRef} className="contact-section">
-            {/* Ambient background glow ring */}
             <div className="contact-glow-overlay" />
 
             <div className="contact-container">
                 <div className="contact-grid">
                     
-                    {/* Left Column: Details & Animated Map */}
+                    {/* Left Column: Details & India HUD Map */}
                     <div className="contact-left contact-left-anim">
                         <div className="contact-badge">
                             <span className="contact-badge-dot" />
@@ -128,7 +165,7 @@ export const ContactSection = () => {
                             We collaborate with state departments, healthcare consortiums, and enterprise networks to establish secure intelligence nodes across India.
                         </p>
 
-                        {/* Floating Cards */}
+                        {/* Floating Info Cards */}
                         <div className="floating-cards-container">
                             <div className="floating-contact-card">
                                 <span className="card-lbl">ENTERPRISE INQUIRIES</span>
@@ -140,68 +177,124 @@ export const ContactSection = () => {
                             </div>
                         </div>
 
-                        {/* Animated Node Map of India */}
-                        <div className="map-wrapper">
-                            <svg viewBox="0 0 200 220" className="india-node-map">
-                                {/* Dotted outline of India */}
-                                <g fill="rgba(255,255,255,0.06)" stroke="none">
-                                    <circle cx="100" cy="30" r="1.5" />
-                                    <circle cx="95" cy="40" r="1.5" />
-                                    <circle cx="110" cy="42" r="1.5" />
-                                    <circle cx="90" cy="50" r="1.5" />
-                                    <circle cx="100" cy="60" r="1.5" />
-                                    <circle cx="115" cy="65" r="1.5" />
-                                    <circle cx="85" cy="70" r="1.5" />
-                                    <circle cx="100" cy="80" r="1.5" />
-                                    <circle cx="120" cy="85" r="1.5" />
-                                    <circle cx="75" cy="90" r="1.5" />
-                                    <circle cx="90" cy="95" r="1.5" />
-                                    <circle cx="110" cy="100" r="1.5" />
-                                    <circle cx="65" cy="110" r="1.5" />
-                                    <circle cx="80" cy="115" r="1.5" />
-                                    <circle cx="100" cy="120" r="1.5" />
-                                    <circle cx="120" cy="122" r="1.5" />
-                                    <circle cx="70" cy="130" r="1.5" />
-                                    <circle cx="88" cy="135" r="1.5" />
-                                    <circle cx="105" cy="140" r="1.5" />
-                                    <circle cx="78" cy="150" r="1.5" />
-                                    <circle cx="95" cy="155" r="1.5" />
-                                    <circle cx="110" cy="160" r="1.5" />
-                                    <circle cx="85" cy="170" r="1.5" />
-                                    <circle cx="100" cy="175" r="1.5" />
-                                    <circle cx="92" cy="190" r="1.5" />
-                                    <circle cx="100" cy="205" r="1.5" />
-                                </g>
+                        {/* Animated Geographic Node Map & HUD Panel */}
+                        <div className="map-and-hud-container">
+                            <div className="map-wrapper">
+                                <svg viewBox="0 0 200 220" className="india-node-map">
+                                    <defs>
+                                        <filter id="map-glow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feGaussianBlur stdDeviation="3" result="blur" />
+                                            <feMerge>
+                                                <feMergeNode in="blur" />
+                                                <feMergeNode in="SourceGraphic" />
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
 
-                                {/* Connecting network lines */}
-                                <g stroke="rgba(0, 210, 255, 0.15)" strokeWidth="0.8" fill="none">
-                                    <line x1="100" y1="60" x2="90" y2="95" />
-                                    <line x1="90" y1="95" x2="88" y2="135" />
-                                    <line x1="88" y1="135" x2="95" y2="155" />
-                                    <line x1="95" y1="155" x2="100" y2="205" />
-                                    
-                                    <line x1="100" y1="60" x2="110" y2="100" />
-                                    <line x1="110" y1="100" x2="105" y2="140" />
-                                    <line x1="105" y1="140" x2="110" y2="160" />
-                                </g>
+                                    {/* Complete high-fidelity stylized outline polygon of India */}
+                                    <polygon 
+                                        points="95,12 102,20 102,32 108,35 115,40 120,55 125,70 135,80 148,82 155,88 165,85 178,78 188,82 190,90 175,100 160,98 152,105 145,105 135,108 128,112 122,120 112,130 110,145 115,160 110,175 100,195 95,205 92,205 88,180 82,165 72,152 76,140 70,130 58,112 55,100 62,95 72,90 78,90 82,82 78,70 85,60 88,45 92,30" 
+                                        fill="rgba(255, 255, 255, 0.015)" 
+                                        stroke="rgba(0, 210, 255, 0.08)" 
+                                        strokeWidth="1" 
+                                        strokeDasharray="4 4"
+                                    />
 
-                                {/* Pulsing City Node 1: Delhi */}
-                                <g transform="translate(100, 60)">
-                                    <circle r="6" fill="#00d2ff" opacity="0.3">
-                                        <animate attributeName="r" values="4;10;4" dur="2s" repeatCount="indefinite" />
-                                    </circle>
-                                    <circle r="3" fill="#00d2ff" />
-                                </g>
+                                    {/* Core Connection Pathways */}
+                                    <g stroke="rgba(0, 210, 255, 0.18)" strokeWidth="0.8" fill="none">
+                                        <path d="M 97 25 L 98 55" />
+                                        <path d="M 98 55 L 82 75" />
+                                        <path d="M 82 75 L 68 105" />
+                                        <path d="M 68 105 L 72 130" />
+                                        <path d="M 72 130 L 76 135" />
+                                        <path d="M 76 135 L 90 160" />
+                                        <path d="M 90 160 L 92 195" />
+                                        
+                                        <path d="M 98 55 L 100 140" />
+                                        <path d="M 100 140 L 90 160" />
+                                        <path d="M 100 140 L 108 165" />
+                                        <path d="M 108 165 L 92 195" />
+                                        
+                                        <path d="M 98 55 L 140 105" />
+                                        <path d="M 140 105 L 172 90" />
+                                        <path d="M 140 105 L 100 140" />
+                                    </g>
 
-                                {/* Pulsing City Node 2: Bangalore */}
-                                <g transform="translate(95, 155)">
-                                    <circle r="6" fill="#7928ca" opacity="0.3">
-                                        <animate attributeName="r" values="4;12;4" dur="2.5s" repeatCount="indefinite" />
-                                    </circle>
-                                    <circle r="3" fill="#7928ca" />
-                                </g>
-                            </svg>
+                                    {/* Flowing animated light pulses traveling along paths */}
+                                    <g>
+                                        <circle r="2" fill="#00d2ff" filter="url(#map-glow)">
+                                            <animateMotion dur="4.5s" repeatCount="indefinite" path="M 97 25 L 98 55 L 100 140 L 90 160" />
+                                        </circle>
+                                        <circle r="2" fill="#7928ca" filter="url(#map-glow)">
+                                            <animateMotion dur="5.5s" repeatCount="indefinite" path="M 98 55 L 140 105 L 172 90" />
+                                        </circle>
+                                        <circle r="2" fill="#00d2ff" filter="url(#map-glow)">
+                                            <animateMotion dur="6s" repeatCount="indefinite" path="M 68 105 L 72 130 L 76 135 L 90 160 L 92 195" />
+                                        </circle>
+                                        <circle r="2" fill="#ffffff" filter="url(#map-glow)">
+                                            <animateMotion dur="5s" repeatCount="indefinite" path="M 140 105 L 100 140 L 108 165" />
+                                        </circle>
+                                    </g>
+
+                                    {/* City Beacons */}
+                                    {citiesList.map((city) => {
+                                        const isHovered = city.id === hoveredCity;
+                                        return (
+                                            <g 
+                                                key={city.id} 
+                                                className="map-city-group"
+                                                onMouseEnter={() => setHoveredCity(city.id)}
+                                                onMouseLeave={() => setHoveredCity(null)}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                {/* Pulsing glow ring */}
+                                                <circle 
+                                                    cx={city.cx} 
+                                                    cy={city.cy} 
+                                                    r={isHovered ? 8 : 5} 
+                                                    fill={city.color} 
+                                                    opacity={isHovered ? 0.6 : 0.25}
+                                                >
+                                                    <animate attributeName="r" values="3;9;3" dur="2.5s" repeatCount="indefinite" />
+                                                </circle>
+                                                {/* Core Center dot */}
+                                                <circle 
+                                                    cx={city.cx} 
+                                                    cy={city.cy} 
+                                                    r={isHovered ? 3.5 : 2.2} 
+                                                    fill="#ffffff" 
+                                                />
+                                            </g>
+                                        );
+                                    })}
+                                </svg>
+                            </div>
+
+                            {/* Floating Real-Time HUD Status Panel */}
+                            <div className="map-hud-panel">
+                                <div className="hud-blur" />
+                                <div className="hud-content">
+                                    <div className="hud-top-line">
+                                        <span className="hud-city-name">{activeCityId} Core</span>
+                                        <span className={`hud-status-badge ${activeCityData.status.toLowerCase()}`}>
+                                            {activeCityData.status}
+                                        </span>
+                                    </div>
+                                    <div className="hud-meta-grid">
+                                        <div className="hud-meta-item">
+                                            <span className="hud-meta-lbl">CLASSIFICATION</span>
+                                            <span className="hud-meta-val">{activeCityData.type}</span>
+                                        </div>
+                                        <div className="hud-meta-item">
+                                            <span className="hud-meta-lbl">TELEMETRY LOAD</span>
+                                            <span className="hud-meta-val load-pct">{activeCityData.load}</span>
+                                        </div>
+                                    </div>
+                                    <p className="hud-city-details">{activeCityData.details}</p>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
                     {/* Right Column: Inquiry Form Card */}
@@ -271,7 +364,6 @@ export const ContactSection = () => {
                                     </button>
                                 </form>
                             ) : (
-                                /* Success State */
                                 <div className="form-success-container">
                                     <div className="success-circle-pulse">
                                         <svg viewBox="0 0 52 52" className="success-checkmark-svg">
