@@ -5,6 +5,7 @@ import { BackgroundEffects } from './components/BackgroundEffects';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ScrollIndicator } from './components/ScrollIndicator';
+import { TrustMarquee } from './components/TrustMarquee';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -23,6 +24,7 @@ function App() {
         gsap.set('.btn-secondary', { y: 20, opacity: 0 });
         gsap.set('.canvas-wrapper', { scale: 0.8, opacity: 0 });
         gsap.set('.scroll-indicator-container', { opacity: 0 });
+        gsap.set('.trust-section', { y: 30, opacity: 0 });
 
         // Staggered entry sequence
         tl.to('.grid-overlay', {
@@ -70,15 +72,21 @@ function App() {
         .to('.scroll-indicator-container', {
             opacity: 0.6,
             duration: 0.8
+        }, '-=0.8')
+        .to('.trust-section', {
+            y: 0,
+            opacity: 1,
+            duration: 1.2
         }, '-=0.8');
 
     }, { scope: containerRef });
 
     return (
-        <div ref={containerRef} style={{ position: 'relative', width: '100%', minHeight: '100vh', overflow: 'hidden' }}>
+        <div ref={containerRef} style={{ position: 'relative', width: '100%', minHeight: '100vh', overflowX: 'hidden' }}>
             <BackgroundEffects />
             <Navbar />
             <Hero />
+            <TrustMarquee />
             <ScrollIndicator />
         </div>
     );
