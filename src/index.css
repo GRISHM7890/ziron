@@ -1452,3 +1452,281 @@ html, body {
         padding: 28px;
     }
 }
+
+/* Why Choose Ziron Section Styling */
+.why-ziron-section {
+    position: relative;
+    width: 100%;
+    padding: 140px 0;
+    background-color: #030303;
+    border-bottom: 1px solid var(--border-premium);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.why-ziron-header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 100px;
+    position: relative;
+    z-index: 5;
+}
+
+.why-ziron-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-premium);
+    border-radius: 100px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(8px);
+}
+
+.why-ziron-badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-accent-blue);
+}
+
+.why-ziron-badge-text {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a1a1aa;
+}
+
+.why-ziron-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 4.2vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+}
+
+/* Timeline Layout */
+.timeline-container {
+    position: relative;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    z-index: 5;
+}
+
+/* Vertical Center Line */
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.03);
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+/* Glowing Progress bar */
+.timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #4f46e5, #00d2ff, #7c3aed);
+    transform-origin: top center;
+    transform: scaleY(0);
+    box-shadow: 0 0 12px rgba(0, 210, 255, 0.4);
+    will-change: transform;
+}
+
+.timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.timeline-item {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.timeline-item.right-item {
+    justify-content: flex-end;
+}
+
+/* Centered Timeline Dot */
+.timeline-dot {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: #030303;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 6;
+    transition: all 0.5s ease;
+}
+
+.dot-inner {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.5s ease;
+}
+
+/* Glowing dot state when item becomes active */
+.timeline-item.active .timeline-dot {
+    border-color: var(--color-accent-blue);
+    box-shadow: 0 0 15px var(--color-accent-blue);
+    background-color: var(--color-accent-blue);
+    transform: translate(-50%, -50%) scale(1.2);
+}
+
+.timeline-item.active .dot-inner {
+    background-color: #ffffff;
+    transform: scale(1.5);
+}
+
+/* Content Cards */
+.timeline-card {
+    width: 45%;
+    background: rgba(10, 10, 12, 0.4);
+    border: 1px solid var(--border-premium);
+    border-radius: 20px;
+    padding: 36px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+
+.card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.timeline-number {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    transition: color 0.5s ease;
+}
+
+.timeline-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+}
+
+.timeline-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    letter-spacing: -0.015em;
+    transition: color 0.5s ease;
+}
+
+.timeline-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 400;
+    transition: color 0.5s ease;
+}
+
+/* Active Highlight States on Card Content */
+.timeline-item.active .timeline-card {
+    border-color: rgba(0, 210, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 210, 255, 0.02);
+    background: rgba(13, 13, 16, 0.65);
+}
+
+.timeline-item.active .timeline-number {
+    color: var(--color-accent-blue);
+    text-shadow: 0 0 8px rgba(0, 210, 255, 0.3);
+}
+
+.timeline-item.active .timeline-title {
+    color: #ffffff;
+}
+
+.timeline-item.active .timeline-desc {
+    color: #e4e4e7;
+}
+
+/* Responsive Styles for Timeline */
+@media (max-width: 1024px) {
+    .why-ziron-section {
+        padding: 100px 0;
+    }
+
+    .timeline-container {
+        padding: 0 24px;
+    }
+
+    /* Move line to the left side */
+    .timeline-line {
+        left: 24px;
+    }
+
+    .timeline-items {
+        gap: 50px;
+    }
+
+    .timeline-item {
+        justify-content: flex-end !important;
+        padding-left: 50px;
+    }
+
+    /* Align Dot to Left Line */
+    .timeline-dot {
+        left: 24px;
+    }
+
+    .timeline-card {
+        width: 100%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .why-ziron-header-container {
+        padding: 0 24px;
+        margin-bottom: 60px;
+    }
+    
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline-line, .timeline-dot {
+        left: 16px;
+    }
+}

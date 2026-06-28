@@ -9,6 +9,7 @@ import { TrustMarquee } from './components/TrustMarquee';
 import { AboutSection } from './components/AboutSection';
 import { EcosystemShowcase } from './components/EcosystemShowcase';
 import { ServicesSection } from './components/ServicesSection';
+import { WhyChooseZiron } from './components/WhyChooseZiron';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -93,6 +94,7 @@ function App() {
             <AboutSection />
             <EcosystemShowcase />
             <ServicesSection />
+            <WhyChooseZiron />
             <ScrollIndicator />
         </div>
     );
