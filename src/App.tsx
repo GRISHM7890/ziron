@@ -11,6 +11,7 @@ import { EcosystemShowcase } from './components/EcosystemShowcase';
 import { ServicesSection } from './components/ServicesSection';
 import { WhyChooseZiron } from './components/WhyChooseZiron';
 import { StatsSection } from './components/StatsSection';
+import { TechStackShowcase } from './components/TechStackShowcase';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -97,6 +98,7 @@ function App() {
             <ServicesSection />
             <WhyChooseZiron />
             <StatsSection />
+            <TechStackShowcase />
             <ScrollIndicator />
         </div>
     );
