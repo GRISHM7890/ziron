@@ -6,6 +6,7 @@ import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { ScrollIndicator } from './components/ScrollIndicator';
 import { TrustMarquee } from './components/TrustMarquee';
+import { AboutSection } from './components/AboutSection';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -87,6 +88,7 @@ function App() {
             <Navbar />
             <Hero />
             <TrustMarquee />
+            <AboutSection />
             <ScrollIndicator />
         </div>
     );
