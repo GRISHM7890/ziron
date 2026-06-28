@@ -12,6 +12,7 @@ import { ServicesSection } from './components/ServicesSection';
 import { WhyChooseZiron } from './components/WhyChooseZiron';
 import { StatsSection } from './components/StatsSection';
 import { TechStackShowcase } from './components/TechStackShowcase';
+import { VisionSection } from './components/VisionSection';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,7 @@ function App() {
             <WhyChooseZiron />
             <StatsSection />
             <TechStackShowcase />
+            <VisionSection />
             <ScrollIndicator />
         </div>
     );
