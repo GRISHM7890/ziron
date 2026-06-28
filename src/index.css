@@ -1730,3 +1730,134 @@ html, body {
         left: 16px;
     }
 }
+
+/* Statistics Section Styling */
+.stats-section {
+    position: relative;
+    width: 100%;
+    padding: 120px 0;
+    background-color: #030303;
+    border-bottom: 1px solid var(--border-premium);
+    overflow: hidden;
+    z-index: 10;
+}
+
+.constellation-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.stats-container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 5;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+/* Statistics Glass Card */
+.stat-card {
+    background: rgba(10, 10, 12, 0.4);
+    border: 1px solid var(--border-premium);
+    border-radius: 20px;
+    padding: 40px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-align: center;
+}
+
+.stat-card-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(0, 210, 255, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.stat-card-content {
+    position: relative;
+    z-index: 3;
+}
+
+.stat-number-value {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 3.8vw, 4rem);
+    font-weight: 800;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: block;
+}
+
+/* Hover States for Stat Card */
+.stat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(13, 13, 16, 0.6);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+.stat-card:hover .stat-card-glow {
+    opacity: 1;
+}
+
+.stat-card:hover .stat-number-value {
+    background: linear-gradient(135deg, #ffffff, var(--color-accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Tablet & Mobile Media Queries for Stats */
+@media (max-width: 1024px) {
+    .stats-section {
+        padding: 100px 0;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .stats-container {
+        padding: 0 24px;
+    }
+
+    .stat-card {
+        padding: 30px;
+    }
+}
