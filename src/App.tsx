@@ -16,6 +16,7 @@ import { VisionSection } from './components/VisionSection';
 import { FounderMessage } from './components/FounderMessage';
 import { ContactSection } from './components/ContactSection';
 import { StorytellingTimeline } from './components/StorytellingTimeline';
+import { Footer } from './components/Footer';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -107,6 +108,7 @@ function App() {
             <FounderMessage />
             <ContactSection />
             <VisionSection />
+            <Footer />
             <ScrollIndicator />
         </div>
     );
