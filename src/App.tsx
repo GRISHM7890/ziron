@@ -13,6 +13,7 @@ import { WhyChooseZiron } from './components/WhyChooseZiron';
 import { StatsSection } from './components/StatsSection';
 import { TechStackShowcase } from './components/TechStackShowcase';
 import { VisionSection } from './components/VisionSection';
+import { FounderMessage } from './components/FounderMessage';
 import { StorytellingTimeline } from './components/StorytellingTimeline';
 
 function App() {
@@ -102,6 +103,7 @@ function App() {
             <WhyChooseZiron />
             <StatsSection />
             <TechStackShowcase />
+            <FounderMessage />
             <VisionSection />
             <ScrollIndicator />
         </div>
