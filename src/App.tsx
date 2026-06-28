@@ -98,11 +98,11 @@ function App() {
             <AboutSection />
             <EcosystemShowcase />
             <ServicesSection />
+            <StorytellingTimeline />
             <WhyChooseZiron />
             <StatsSection />
             <TechStackShowcase />
             <VisionSection />
-            <StorytellingTimeline />
             <ScrollIndicator />
         </div>
     );
