@@ -14,6 +14,7 @@ import { StatsSection } from './components/StatsSection';
 import { TechStackShowcase } from './components/TechStackShowcase';
 import { VisionSection } from './components/VisionSection';
 import { FounderMessage } from './components/FounderMessage';
+import { ContactSection } from './components/ContactSection';
 import { StorytellingTimeline } from './components/StorytellingTimeline';
 
 function App() {
@@ -104,6 +105,7 @@ function App() {
             <StatsSection />
             <TechStackShowcase />
             <FounderMessage />
+            <ContactSection />
             <VisionSection />
             <ScrollIndicator />
         </div>
