@@ -8,6 +8,7 @@ import { ScrollIndicator } from './components/ScrollIndicator';
 import { TrustMarquee } from './components/TrustMarquee';
 import { AboutSection } from './components/AboutSection';
 import { EcosystemShowcase } from './components/EcosystemShowcase';
+import { ServicesSection } from './components/ServicesSection';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -91,6 +92,7 @@ function App() {
             <TrustMarquee />
             <AboutSection />
             <EcosystemShowcase />
+            <ServicesSection />
             <ScrollIndicator />
         </div>
     );
