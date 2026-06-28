@@ -13,6 +13,7 @@ import { WhyChooseZiron } from './components/WhyChooseZiron';
 import { StatsSection } from './components/StatsSection';
 import { TechStackShowcase } from './components/TechStackShowcase';
 import { VisionSection } from './components/VisionSection';
+import { StorytellingTimeline } from './components/StorytellingTimeline';
 
 function App() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -101,6 +102,7 @@ function App() {
             <StatsSection />
             <TechStackShowcase />
             <VisionSection />
+            <StorytellingTimeline />
             <ScrollIndicator />
         </div>
     );

@@ -2259,3 +2259,219 @@ html, body {
         margin: 0 0.12em;
     }
 }
+
+/* Horizontal Storytelling Timeline Styling */
+.horizontal-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #030303;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid var(--border-premium);
+    z-index: 10;
+}
+
+.horizontal-sticky-header {
+    position: absolute;
+    top: 80px;
+    left: 80px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.horizontal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-premium);
+    border-radius: 100px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(8px);
+}
+
+.horizontal-badge-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-accent-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 8px var(--color-accent-blue);
+}
+
+.horizontal-badge-text {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #a1a1aa;
+}
+
+.horizontal-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+}
+
+/* Horizontal Track scroll wrapper */
+.horizontal-wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    padding-left: 80px;
+    padding-right: 200px;
+    align-items: center;
+    will-change: transform;
+    z-index: 5;
+}
+
+.horizontal-slide {
+    position: relative;
+    width: 600px;
+    padding-right: 120px; /* Luxury spacing between steps */
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Horizontal Timeline scroll card */
+.timeline-scroll-card {
+    width: 100%;
+    min-height: 480px;
+    background: rgba(10, 10, 12, 0.45);
+    border: 1px solid var(--border-premium);
+    border-radius: 28px;
+    padding: 40px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: border-color 0.4s ease, background 0.4s ease;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    will-change: transform;
+}
+
+.card-illustration-box {
+    width: 100%;
+    height: 160px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.step-svg {
+    width: auto;
+    height: 100%;
+    overflow: visible;
+}
+
+.card-details-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card-top-indicator {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.card-index-num {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-accent-blue);
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.2);
+}
+
+.card-step-title {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+}
+
+.card-step-headline {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 14px;
+    letter-spacing: -0.015em;
+}
+
+.card-step-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+/* Card hover updates */
+.timeline-scroll-card:hover {
+    border-color: rgba(255, 255, 255, 0.12);
+    background: rgba(13, 13, 16, 0.6);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Responsive Overrides for Mobile Horizontal scroll */
+@media (max-width: 1024px) {
+    .horizontal-sticky-header {
+        top: 60px;
+        left: 40px;
+    }
+
+    .horizontal-wrapper {
+        padding-left: 40px;
+    }
+
+    .horizontal-slide {
+        width: 480px;
+        padding-right: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .horizontal-sticky-header {
+        top: 40px;
+        left: 24px;
+    }
+
+    .horizontal-wrapper {
+        padding-left: 24px;
+        padding-right: 100px;
+    }
+
+    .horizontal-slide {
+        width: 380px;
+        padding-right: 50px;
+    }
+
+    .timeline-scroll-card {
+        padding: 30px;
+        min-height: 420px;
+    }
+
+    .card-illustration-box {
+        height: 120px;
+    }
+
+    .card-step-headline {
+        font-size: 1.3rem;
+    }
+}
